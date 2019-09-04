@@ -1,21 +1,6 @@
-*.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
 
-
-# Created by https://www.gitignore.io/api/java,gradle,kotlin,android,intellij+all,androidstudio
-# Edit at https://www.gitignore.io/?templates=java,gradle,kotlin,android,intellij+all,androidstudio
+# Created by https://www.gitignore.io/api/java,macos,gradle,kotlin,android,intellij+all,androidstudio
+# Edit at https://www.gitignore.io/?templates=java,macos,gradle,kotlin,android,intellij+all,androidstudio
 
 ### Android ###
 # Built application files
@@ -225,6 +210,34 @@ hs_err_pid*
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
 ### Gradle ###
 .gradle
 
@@ -302,11 +315,7 @@ obj/
 .idea/uiDesigner.xml
 
 # OS-specific files
-.DS_Store
 .DS_Store?
-._*
-.Spotlight-V100
-.Trashes
 ehthumbs.db
 Thumbs.db
 
@@ -337,6 +346,4 @@ Thumbs.db
 
 !/gradle/wrapper/gradle-wrapper.jar
 
-# End of https://www.gitignore.io/api/java,gradle,kotlin,android,intellij+all,androidstudio
-
-
+# End of https://www.gitignore.io/api/java,macos,gradle,kotlin,android,intellij+all,androidstudio
