@@ -43,7 +43,7 @@ object RemoteRepository : Repository {
 
   private const val TAG = "RemoteRepository"
 
-  private const val LOGIN = "w00tze"
+  private const val LOGIN = "w00tzexxx"
 
   private val api = Injection.provideGitHubApi()
 
