@@ -33,19 +33,10 @@ package com.raywenderlich.android.w00tze.repository
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
-import android.net.Uri
-import android.os.AsyncTask
-import android.util.Log
-import com.raywenderlich.android.w00tze.app.Constants.fullUrlString
 import com.raywenderlich.android.w00tze.app.Injection
-import com.raywenderlich.android.w00tze.app.isNullOrBlankOrNullString
 import com.raywenderlich.android.w00tze.model.*
-import org.json.JSONArray
-import org.json.JSONException
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Response
-import java.io.IOException
 
 
 object RemoteRepository : Repository {
@@ -83,6 +74,7 @@ object RemoteRepository : Repository {
           liveData.value = response.body()
         }
       }
+
       override fun onFailure(call: Call<List<Gist>>, t: Throwable) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
       }
@@ -103,6 +95,7 @@ object RemoteRepository : Repository {
           liveData.value = Either.error(ApiError.User, null)
         }
       }
+
       override fun onFailure(call: Call<User>, t: Throwable) {
         liveData.value = Either.error(ApiError.User, null)
       }
