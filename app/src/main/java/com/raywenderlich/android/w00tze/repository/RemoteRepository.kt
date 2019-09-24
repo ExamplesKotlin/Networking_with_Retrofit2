@@ -79,9 +79,17 @@ object RemoteRepository : Repository {
   override fun getGists(): LiveData<List<Gist>> {
     val liveData = MutableLiveData<List<Gist>>()
 
-    FetchAsyncTask("/users/$LOGIN/gists", ::parseGists, { gists ->
-      liveData.value = gists
-    }).execute()
+    api.getGists(LOGIN).enqueue(object : retrofit2.Callback<List<Gist>> {
+      override fun onResponse(call: Call<List<Gist>>, response: Response<List<Gist>>) {
+        if (response != null) {
+          liveData.value = emptyList()
+        }
+      }
+      override fun onFailure(call: Call<List<Gist>>, t: Throwable) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+      }
+
+    })
 
     return liveData
   }
