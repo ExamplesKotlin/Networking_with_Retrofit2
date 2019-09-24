@@ -47,18 +47,20 @@ object RemoteRepository : Repository {
 
   private val api = Injection.provideGitHubApi()
 
-  override fun getRepos(): LiveData<List<Repo>> {
-    val liveData = MutableLiveData<List<Repo>>()
+  override fun getRepos(): LiveData<Either<List<Repo>>> {
+    val liveData = MutableLiveData<Either<List<Repo>>>()
 
     api.getRepos(LOGIN).enqueue(object : retrofit2.Callback<List<Repo>> {
       override fun onResponse(call: Call<List<Repo>>, response: Response<List<Repo>>) {
-        if (response != null) {
-          liveData.value = response.body()
+        if (response != null && response.isSuccessful) {
+          liveData.value = Either.success(response.body())
+        } else {
+          liveData.value = Either.error(ApiError.REPOS, null)
         }
       }
 
       override fun onFailure(call: Call<List<Repo>>, t: Throwable) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        liveData.value = Either.error(ApiError.REPOS, null)
       }
     })
 
