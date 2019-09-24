@@ -82,7 +82,7 @@ object RemoteRepository : Repository {
     api.getGists(LOGIN).enqueue(object : retrofit2.Callback<List<Gist>> {
       override fun onResponse(call: Call<List<Gist>>, response: Response<List<Gist>>) {
         if (response != null) {
-          liveData.value = emptyList()
+          liveData.value = response.body()
         }
       }
       override fun onFailure(call: Call<List<Gist>>, t: Throwable) {
