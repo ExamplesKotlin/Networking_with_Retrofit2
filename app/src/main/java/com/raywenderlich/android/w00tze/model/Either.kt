@@ -7,7 +7,7 @@ data class Either<out T>(val status: Status, val data: T?, val error: ApiError?)
       return Either(Status.SUCCESS, data, null)
     }
 
-    fun <T> error(error: ApiError?, data: T?): Either<T> {
+    fun <T> error(error: ApiError, data: T?): Either<T> {
       return Either(Status.SUCCESS, data, error)
     }
 
