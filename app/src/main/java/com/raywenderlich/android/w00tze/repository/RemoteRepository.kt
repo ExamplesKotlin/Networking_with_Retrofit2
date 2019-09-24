@@ -67,18 +67,20 @@ object RemoteRepository : Repository {
     return liveData
   }
 
-  override fun getGists(): LiveData<List<Gist>> {
-    val liveData = MutableLiveData<List<Gist>>()
+  override fun getGists(): LiveData<Either<List<Gist>>> {
+    val liveData = MutableLiveData<Either<List<Gist>>>()
 
     api.getGists(LOGIN).enqueue(object : retrofit2.Callback<List<Gist>> {
       override fun onResponse(call: Call<List<Gist>>, response: Response<List<Gist>>) {
-        if (response != null) {
-          liveData.value = response.body()
+        if (response != null && response.isSuccessful) {
+          liveData.value = Either.success(response.body())
+        } else {
+          liveData.value = Either.error(ApiError.GISTS, null)
         }
       }
 
       override fun onFailure(call: Call<List<Gist>>, t: Throwable) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        liveData.value = Either.error(ApiError.GISTS, null)
       }
 
     })
