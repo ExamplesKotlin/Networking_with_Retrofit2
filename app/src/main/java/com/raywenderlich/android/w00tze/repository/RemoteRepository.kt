@@ -39,9 +39,7 @@ import android.util.Log
 import com.raywenderlich.android.w00tze.app.Constants.fullUrlString
 import com.raywenderlich.android.w00tze.app.Injection
 import com.raywenderlich.android.w00tze.app.isNullOrBlankOrNullString
-import com.raywenderlich.android.w00tze.model.Gist
-import com.raywenderlich.android.w00tze.model.Repo
-import com.raywenderlich.android.w00tze.model.User
+import com.raywenderlich.android.w00tze.model.*
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -94,17 +92,19 @@ object RemoteRepository : Repository {
     return liveData
   }
 
-  override fun getUser(): LiveData<User> {
-    val liveData = MutableLiveData<User>()
+  override fun getUser(): LiveData<Either<User>> {
+    val liveData = MutableLiveData<Either<User>>()
 
     api.getUser(LOGIN).enqueue(object : retrofit2.Callback<User> {
       override fun onResponse(call: Call<User>, response: Response<User>) {
-        if (response != null) {
-          liveData.value = response.body()
+        if (response != null && response.isSuccessful) {
+          liveData.value = Either.success(response.body())
+        } else {
+          liveData.value = Either.error(ApiError.User, null)
         }
       }
       override fun onFailure(call: Call<User>, t: Throwable) {
-
+        liveData.value = Either.error(ApiError.User, null)
       }
 
     })
