@@ -35,4 +35,4 @@ import com.google.gson.annotations.SerializedName
 import java.util.*
 
 
-data class Gist(@SerializedName val createdAt: Date, val description: String)
+data class Gist(@SerializedName("created_at") val createdAt: Date, val description: String)
