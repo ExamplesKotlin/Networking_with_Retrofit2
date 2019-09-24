@@ -97,9 +97,15 @@ object RemoteRepository : Repository {
   override fun getUser(): LiveData<User> {
     val liveData = MutableLiveData<User>()
 
-    FetchAsyncTask("/users/$LOGIN", ::parseUser, { user ->
-      liveData.value = user
-    }).execute()
+    api.getUser(LOGIN).enqueue(object : retrofit2.Callback<User> {
+      override fun onResponse(call: Call<User>, response: Response<User>) {
+
+      }
+      override fun onFailure(call: Call<User>, t: Throwable) {
+       
+      }
+
+    })
 
     return liveData
   }
