@@ -32,7 +32,6 @@
 package com.raywenderlich.android.w00tze.app
 
 
-import com.raywenderlich.android.w00tze.repository.BasicRepository
 import com.raywenderlich.android.w00tze.repository.GitHubApi
 import com.raywenderlich.android.w00tze.repository.RemoteRepository
 import com.raywenderlich.android.w00tze.repository.Repository
