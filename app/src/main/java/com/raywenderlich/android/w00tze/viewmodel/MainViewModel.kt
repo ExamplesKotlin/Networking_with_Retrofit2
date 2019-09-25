@@ -37,4 +37,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     })
   }
+
+  fun logout() {
+    AuthenticationPrefs.saveAuthToken("")
+    AuthenticationPrefs.clearUsername()
+  }
 }
