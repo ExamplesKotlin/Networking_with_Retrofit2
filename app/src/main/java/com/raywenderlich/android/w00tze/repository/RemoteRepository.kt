@@ -96,12 +96,12 @@ object RemoteRepository : Repository {
         if (response != null && response.isSuccessful) {
           liveData.value = Either.success(response.body())
         } else {
-          liveData.value = Either.error(ApiError.User, null)
+          liveData.value = Either.error(ApiError.USER, null)
         }
       }
 
       override fun onFailure(call: Call<User>, t: Throwable) {
-        liveData.value = Either.error(ApiError.User, null)
+        liveData.value = Either.error(ApiError.USER, null)
       }
 
     })
