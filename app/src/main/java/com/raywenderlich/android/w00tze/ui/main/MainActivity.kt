@@ -31,6 +31,7 @@
 
 package com.raywenderlich.android.w00tze.ui.main
 
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.net.ConnectivityManager
 import android.os.Bundle
@@ -42,6 +43,7 @@ import com.raywenderlich.android.w00tze.R
 import com.raywenderlich.android.w00tze.ui.gists.GistsFragment
 import com.raywenderlich.android.w00tze.ui.profile.ProfileFragment
 import com.raywenderlich.android.w00tze.ui.repos.ReposFragment
+import com.raywenderlich.android.w00tze.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -50,6 +52,8 @@ class MainActivity : AppCompatActivity() {
   private val reposFragment = ReposFragment()
   private val gistsFragment = GistsFragment()
   private val profileFragment = ProfileFragment()
+
+  private lateinit var mainViewModel: MainViewModel
 
   private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
     val fragment = when (item.itemId) {
@@ -65,6 +69,8 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
+
+    mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
     navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
 
