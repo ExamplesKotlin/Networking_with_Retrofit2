@@ -72,7 +72,7 @@ class ProfileFragment : Fragment() {
         company.text = user.company
         Picasso.with(context).load(user.avatarUrl).into(avatar)
       } else {
-        if (either?.error == ApiError.User) {
+        if (either?.error == ApiError.USER) {
           Toast.makeText(context, getString(R.string.error_retrieving_user), Toast.LENGTH_SHORT).show()
         }
       }
