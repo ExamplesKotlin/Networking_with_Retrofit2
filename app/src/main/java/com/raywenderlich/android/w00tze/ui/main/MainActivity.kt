@@ -40,6 +40,8 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import com.raywenderlich.android.w00tze.BuildConfig
 import com.raywenderlich.android.w00tze.R
@@ -80,6 +82,20 @@ class MainActivity : AppCompatActivity() {
     switchToFragment(reposFragment)
 
     checkConnectivity()
+  }
+
+  override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    super.onCreateOptionsMenu(menu)
+    menuInflater.inflate(R.menu.menu_main, menu)
+    return true
+  }
+
+  override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    when (item.itemId) {
+      R.id.login_menu_item -> startLogin()
+      R.id.logout_menu_item -> logout()
+    }
+    return super.onOptionsItemSelected(item)
   }
 
   private fun startLogin() {
