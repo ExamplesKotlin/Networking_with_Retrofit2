@@ -33,12 +33,15 @@ package com.raywenderlich.android.w00tze.ui.main
 
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
+import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
+import com.raywenderlich.android.w00tze.BuildConfig
 import com.raywenderlich.android.w00tze.R
 import com.raywenderlich.android.w00tze.ui.gists.GistsFragment
 import com.raywenderlich.android.w00tze.ui.profile.ProfileFragment
@@ -77,6 +80,20 @@ class MainActivity : AppCompatActivity() {
     switchToFragment(reposFragment)
 
     checkConnectivity()
+  }
+
+  private fun startLogin() {
+    if (!mainViewModel.isAuthenticated()) {
+      showUsernameDialog {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/login/oauth/authorize?client_id=${BuildConfig.CLIENT_ID}&scope=user%20gist&redirect_uri=${BuildConfig.REDIRECT_URI}"))
+        startActivity(intent)
+      }
+    }
+  }
+
+  private fun logout() {
+    mainViewModel.logout()
+    switchToFragment(reposFragment)
   }
 
   private fun switchToFragment(fragment: Fragment) {
