@@ -18,8 +18,8 @@ android {
   buildTypes {
     debug {
       buildConfigField "String", "CLIENT_ID", "\"63a83ed44ba17b9f19d0\""
-      buildConfigField "String", "CLIENT_ID", "\"733cd9e443ead34e114f56a9d620164bc2f9d26e\""
-      buildConfigField "String", "CLIENT_ID", "\"w00tze://callback\""
+      buildConfigField "String", "CLIENT_SECRET", "\"733cd9e443ead34e114f56a9d620164bc2f9d26e\""
+      buildConfigField "String", "REDIRECT_URI", "\"w00tze://callback\""
     }
     release {
       minifyEnabled false
