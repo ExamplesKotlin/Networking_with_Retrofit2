@@ -84,6 +84,17 @@ class MainActivity : AppCompatActivity() {
     checkConnectivity()
   }
 
+  override fun onResume() {
+    super.onResume()
+
+    val uri = intent.data
+    if (uri != null && uri.toString().startsWith(BuildConfig.REDIRECT_URI)) {
+      mainViewModel.getAccessToken(uri) {
+        switchToFragment(reposFragment)
+      }
+    }
+  }
+
   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
     super.onCreateOptionsMenu(menu)
     menuInflater.inflate(R.menu.menu_main, menu)
